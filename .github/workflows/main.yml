@@ -19,3 +19,10 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: build --scan
+    strategy:
+      matrix:
+        target: [x86_64-unknown-linux-gnu]
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+            test_features: testcontainers
