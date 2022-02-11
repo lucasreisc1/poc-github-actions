@@ -1,15 +1,14 @@
 name: ci
-
 on:
   push:
     branches:
       - main
-
 jobs:
-  build-jvm:
+  build:
     runs-on: ubuntu-latest
-    name: Build POC RI
+    name: Pipeline POC RI
     steps:
+      - uses: actions/checkout@v2
       #Run JDK configuration
       - name: Set up JDK 11
         uses: actions/setup-java@v2
@@ -17,4 +16,6 @@ jobs:
           java-version: "11"
           distribution: "adopt"
       - name: Build
-        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build --scan
