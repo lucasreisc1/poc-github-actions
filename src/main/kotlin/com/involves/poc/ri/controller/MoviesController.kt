@@ -32,8 +32,8 @@ class MoviesController {
     }
 
     @GET
-    @Path("{movieId}/name/{name}")
-    fun findMovieById(@PathParam("movieId") movieId: String, @PathParam("name") name: String): Response? {
+    @Path("/name/{name}/actor/{actor}")
+    fun findMovieById(@PathParam("name") name: String, @PathParam("actor") movieId: String): Response? {
         val movie = movieRepository.findMovie(movieId, name)
 
         return Response.status(HttpStatus.SC_OK).entity(movie).build()

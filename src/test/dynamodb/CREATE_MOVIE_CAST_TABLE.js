@@ -1,12 +1,3 @@
-// aws dynamodb create-table \
-//     --table-name Music \
-//     --attribute-definitions \
-//         AttributeName=Artist,AttributeType=S \
-//         AttributeName=SongTitle,AttributeType=S \
-//     --key-schema AttributeName=Artist,KeyType=HASH AttributeName=SongTitle,KeyType=RANGE \
-//     --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
-//     --table-class STANDARD
-
  var params = {
      TableName: 'movie',
      KeySchema: [
@@ -15,7 +6,7 @@
              KeyType: 'HASH',
          },
          {
-             AttributeName: 'movie_name',
+             AttributeName: 'name',
              KeyType: 'RANGE',
          }
      ],
@@ -25,11 +16,11 @@
              AttributeType: 'S',
          },
          {
-             AttributeName: 'movie_name',
+             AttributeName: 'name',
              AttributeType: 'S',
          },
          {
-             AttributeName: 'actor_role',
+             AttributeName: 'actorRole',
              AttributeType: 'S',
          },
          {
@@ -55,7 +46,7 @@
                      KeyType: 'HASH',
                  },
                  { // alternate RANGE key attribute for the secondary index
-                     AttributeName: 'actor_role',
+                     AttributeName: 'actorRole',
                      KeyType: 'RANGE',
                  }
              ],

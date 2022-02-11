@@ -11,7 +11,7 @@ import java.net.URI
 import javax.enterprise.context.ApplicationScoped
 import javax.ws.rs.Produces
 
-@ApplicationScoped
+
 class DynamoClientConfig (
     @ConfigProperty(name = "quarkus.dynamodb.aws.region")
     private val region: String,
@@ -20,6 +20,7 @@ class DynamoClientConfig (
 ){
 
     @Produces
+    @ApplicationScoped
     fun dynamoDbAsyncClient(): DynamoDbAsyncClient {
         return DynamoDbAsyncClient.builder()
             .region(Region.of(region))
@@ -29,6 +30,7 @@ class DynamoClientConfig (
     }
 
     @Produces
+    @ApplicationScoped
     fun dynamoDbClient(): DynamoDbClient {
         return DynamoDbClient.builder()
             .region(Region.of(region))
@@ -38,6 +40,7 @@ class DynamoClientConfig (
     }
 
     @Produces
+    @ApplicationScoped
     fun dynamoDbEnhancedAsyncClient(): DynamoDbEnhancedAsyncClient {
         return DynamoDbEnhancedAsyncClient.builder()
             .dynamoDbClient(dynamoDbAsyncClient())
@@ -45,6 +48,7 @@ class DynamoClientConfig (
     }
 
     @Produces
+    @ApplicationScoped
     fun dynamoDbEnhancedClient(): DynamoDbEnhancedClient {
         return DynamoDbEnhancedClient.builder()
             .dynamoDbClient(dynamoDbClient())
