@@ -16,6 +16,9 @@ jobs:
         with:
           java-version: "11"
           distribution: "adopt"
+      #Make gradlew
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
       #Gradle cache configuration
       - name: Set up Gradle
         uses: actions/cache@v2
