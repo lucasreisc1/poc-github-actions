@@ -1,7 +1,7 @@
 package com.involves.poc.ri.controller
 
-import com.involves.poc.ri.domain.Movie
-import com.involves.poc.ri.domain.MovieRepository
+import com.involves.poc.ri.application.MovieAppService
+import com.involves.poc.ri.domain.MovieDTO
 import org.apache.http.HttpStatus
 import org.apache.http.HttpStatus.SC_CREATED
 import javax.enterprise.inject.Default
@@ -22,19 +22,19 @@ class MoviesController {
 
     @Inject
     @field: Default
-    lateinit var movieRepository: MovieRepository
+    lateinit var movieAppService: MovieAppService
 
     @POST
-    fun createMovie(movie: Movie): Response {
-        movieRepository.persistMovie(movie)
+    fun createMovie(movie: MovieDTO): Response {
+        movieAppService.createMovie(movie)
 
         return Response.status(SC_CREATED).build()
     }
 
     @GET
     @Path("/name/{name}/actor/{actor}")
-    fun findMovieById(@PathParam("name") name: String, @PathParam("actor") movieId: String): Response? {
-        val movie = movieRepository.findMovie(movieId, name)
+    fun findMovieById(@PathParam("name") name: String, @PathParam("actor") actor: String): Response? {
+        val movie = movieAppService.findMovieBy(name, actor)
 
         return Response.status(HttpStatus.SC_OK).entity(movie).build()
     }
