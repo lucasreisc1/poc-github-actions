@@ -2,9 +2,9 @@ name: ci
 
 on:
   push:
-    branch: [main]
-    paths:
-      - ".github/workflows/ci.yml"
+    branches:
+      - main
+
 jobs:
   build-jvm:
     runs-on: ubuntu-latest
