@@ -7,6 +7,9 @@ plugins {
 repositories {
     mavenCentral()
     mavenLocal()
+    maven {
+        url = uri("https://s3-us-west-2.amazonaws.com/dynamodb-local/release")
+    }
 }
 
 val quarkusPlatformGroupId: String by project
@@ -35,13 +38,16 @@ dependencies {
     implementation("com.google.code.gson:gson:2.7")
     implementation("io.projectreactor:reactor-core:3.4.14")
 
-    // Dependencia está sendo utilizada por conta do erro ClassDefNotFoundError causada com a integração com quarkus.
+    // Dependencia está sendo utilizada por conta do erro ClassDefNotFoundError do DynamoDbBean causada com a integração com quarkus.
     implementation("me.nithanim.quarkus:quarkus-amazon-dynamodb-enhanced:1.0.1")
 
 
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
     testImplementation ("org.assertj:assertj-core:3.22.0")
+    testImplementation("com.amazonaws:DynamoDBLocal:1.15.0")
+    testImplementation("org.testcontainers:testcontainers:1.14.1")
+    testImplementation("org.testcontainers:junit-jupiter:1.14.1")
 }
 
 group = "com.involves.poc.ri"

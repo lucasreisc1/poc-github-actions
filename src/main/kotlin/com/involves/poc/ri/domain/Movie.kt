@@ -8,12 +8,18 @@ import java.time.Year
 
 @DynamoDbBean
 class Movie(
-    @get:DynamoDbPartitionKey var actor: String? = null,
-    @get:DynamoDbSortKey var name: String? = null,
-    @get:DynamoDbSecondarySortKey(indexNames = ["index_actorId_roleId"]) var actorRole: String? = null,
-    @get:DynamoDbSecondarySortKey(indexNames = ["index_actorId_yearId"]) var year: Int? = null,
-    @get:DynamoDbSecondarySortKey(indexNames = ["index_actorId_genderId"]) var gender: String? = null
+    @get:DynamoDbPartitionKey
+    var actor: String? = null,
+    @get:DynamoDbSortKey
+    var name: String? = null,
+    @get:DynamoDbSecondarySortKey(indexNames = ["index_actorId_roleId"])
+    var actorRole: String? = null,
+    @get:DynamoDbSecondarySortKey(indexNames = ["index_actorId_yearId"])
+    var year: Int? = null,
+    @get:DynamoDbSecondarySortKey(indexNames = ["index_actorId_genderId"])
+    var gender: String? = null
 ) {
+
     companion object {
         fun mutate(dto: MovieDTO): Movie {
             return Movie(dto.actor, dto.name, dto.actorRole, dto.year, dto.gender)

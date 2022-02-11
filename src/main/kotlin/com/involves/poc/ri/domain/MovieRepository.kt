@@ -15,6 +15,7 @@ class MovieRepository(
 
     private val tableMovie = dynamoDBClient.table(movieTableName, TableSchema.fromBean(Movie::class.java))
 
+
     fun persistMovie(movie: Movie): Unit? {
         return tableMovie.putItem(movie)
     }
@@ -23,6 +24,10 @@ class MovieRepository(
         val movieKey = Key.builder().partitionValue(actor).sortValue(name).build()
 
         return tableMovie.getItem(movieKey)
+    }
+
+    fun createTable() {
+        return tableMovie.createTable()
     }
 
 }

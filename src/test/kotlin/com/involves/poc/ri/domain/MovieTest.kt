@@ -1,6 +1,6 @@
 package com.involves.poc.ri.domain
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.time.Year
 
@@ -13,7 +13,7 @@ class MovieTest {
         // execute:
         val currentYearMovie = spiderManNoWayHome.isCurrentYearMovie()
         // verify:
-        Assertions.assertThat(currentYearMovie).isFalse()
+        assertThat(currentYearMovie).isFalse()
     }
 
     @Test
@@ -23,7 +23,7 @@ class MovieTest {
         // execute:
         val currentYearMovie = interestelar.isCurrentYearMovie()
         // verify:
-        Assertions.assertThat(currentYearMovie).isTrue()
+        assertThat(currentYearMovie).isTrue()
     }
 
 }
